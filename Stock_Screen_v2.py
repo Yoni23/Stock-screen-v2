@@ -76,8 +76,8 @@ def evaluate(data):
         },
         "Debt/Equity": {
             "Deep Value": lambda x: x is not None and x < 0.5,
-            "Value": lambda x: x is not None and x < 1.5,
-            "Growth": lambda x: x is not None and x < 2
+            "Value": lambda x: x is not None and x < 0.5,
+            "Growth": lambda x: x is not None and x < 0.5
         },
         "Free Cashflow yield": {
             "Deep Value": lambda x: x is not None and x > 8
@@ -102,6 +102,7 @@ def evaluate(data):
         },
         "EPS Growth YOY": {
             "Growth": lambda x: x is not None and x > 20
+            "Value": lambda x: x is not None and x > 5
         },
         "Gross margin": {
             "Growth": lambda x: x is not None and x > 60
