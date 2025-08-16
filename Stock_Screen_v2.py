@@ -1,15 +1,5 @@
 import streamlit as st
 import yfinance as yf
-import requests
-import os
-
-stock = yf.Ticker("NVDA")
-info = stock.info
-print("NVDA debtToEquity raw:", info.get("debtToEquity"))
-
-stock = yf.Ticker("GTT.PA")
-info = stock.info
-print("GTT.PA debtToEquity raw:", info.get("debtToEquity"))
 
 def safe_float(x):
     try:
@@ -25,17 +15,23 @@ def fetch_data(ticker):
         info = stock.info
     except Exception:
         return None
-    # Print for debugging
-    print(f"{ticker} raw info snapshot:")
-    for key in ["trailingPE", "priceToBook", "debtToEquity", "freeCashflow", "marketCap",
-                "currentRatio", "priceToSalesTrailing12Months", "returnOnEquity",
-                "earningsQuarterlyGrowth", "revenueGrowth", "earningsGrowth", "grossMargins"]:
-        print(f"    {key}: {info.get(key)}")
+
+    # Print out the raw debtToEquity value for debugging!
+    print(f"{ticker} - debtToEquity raw:", info.get("debtToEquity"))
+
+    # Optionally print all fetched key financials for further diagnosis
+    keys_to_print = [
+        "trailingPE", "priceToBook", "debtToEquity", "freeCashflow", "marketCap",
+        "currentRatio", "priceToSalesTrailing12Months", "returnOnEquity",
+        "earningsQuarterlyGrowth", "revenueGrowth", "earningsGrowth", "grossMargins"
+    ]
+    for key in keys_to_print:
+        print(f"{ticker} - {key}: {info.get(key)}")
+
     data = {
         "PE": safe_float(info.get("trailingPE")),
         "PB": safe_float(info.get("priceToBook")),
-        "Debt/Equity": safe_float(info.get("debtToEquity")),
-        print(f"{ticker} - debtToEquity raw:", info.get("debtToEquity")):,
+        "Debt/Equity": safe_float(info.get("debtToEquity")),  # returns None if not available
         "Free Cashflow yield": (
             safe_float(info.get("freeCashflow")) / safe_float(info.get("marketCap")) * 100
             if safe_float(info.get("freeCashflow")) is not None and safe_float(info.get("marketCap")) not in [None, 0]
@@ -54,7 +50,7 @@ def fetch_data(ticker):
         "Retention Rate": 120,  # Placeholder
         "Moat": True,  # Placeholder
         "Cashflow 5 Years": True,  # Placeholder
-        "Insider Buying": False  # Placeholder       
+        "Insider Buying": False  # Placeholder
     }
     return data
 
