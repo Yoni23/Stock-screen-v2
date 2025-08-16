@@ -9,6 +9,19 @@ def safe_float(x):
     except (ValueError, TypeError):
         return None
 
+# New helper function to standardize Debt/Equity ratio
+def adjust_de_ratio(raw_ratio):
+    if raw_ratio is None:
+        return None
+    try:
+        val = float(raw_ratio)
+        # If the value is suspiciously high, treat it as percent (e.g., 12.267 -> 0.12267)
+        if val > 3:
+            val = val / 100
+        return val
+    except Exception:
+        return None
+
 def fetch_data(ticker):
     stock = yf.Ticker(ticker)
     try:
@@ -16,10 +29,8 @@ def fetch_data(ticker):
     except Exception:
         return None
 
-    # Show the raw debtToEquity value using Streamlit's UI
     st.write(f"{ticker} - debtToEquity raw:", info.get("debtToEquity"))
 
-    # Optionally show all key financials for further diagnosis
     keys_to_show = [
         "trailingPE", "priceToBook", "debtToEquity", "freeCashflow", "marketCap",
         "currentRatio", "priceToSalesTrailing12Months", "returnOnEquity",
@@ -31,7 +42,7 @@ def fetch_data(ticker):
     data = {
         "PE": safe_float(info.get("trailingPE")),
         "PB": safe_float(info.get("priceToBook")),
-        "Debt/Equity": safe_float(info.get("debtToEquity")),  # returns None if not available
+        "Debt/Equity": adjust_de_ratio(info.get("debtToEquity")),
         "Free Cashflow yield": (
             safe_float(info.get("freeCashflow")) / safe_float(info.get("marketCap")) * 100
             if safe_float(info.get("freeCashflow")) is not None and safe_float(info.get("marketCap")) not in [None, 0]
