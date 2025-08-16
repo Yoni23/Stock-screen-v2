@@ -3,9 +3,6 @@ import yfinance as yf
 import requests
 import os
 
-import streamlit as st
-import yfinance as yf
-
 def safe_float(x):
     try:
         if x is None:
