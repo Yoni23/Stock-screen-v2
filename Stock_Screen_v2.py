@@ -101,7 +101,7 @@ def evaluate(data):
             "Growth": lambda x: x is not None and x > 20
         },
         "EPS Growth YOY": {
-            "Growth": lambda x: x is not None and x > 20
+            "Growth": lambda x: x is not None and x > 20,
             "Value": lambda x: x is not None and x > 5
         },
         "Gross margin": {
