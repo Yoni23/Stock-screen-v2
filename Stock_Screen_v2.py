@@ -35,6 +35,7 @@ def fetch_data(ticker):
         "PE": safe_float(info.get("trailingPE")),
         "PB": safe_float(info.get("priceToBook")),
         "Debt/Equity": safe_float(info.get("debtToEquity")),
+        print(f"{ticker} - debtToEquity raw:", info.get("debtToEquity")),
         "Free Cashflow yield": (
             safe_float(info.get("freeCashflow")) / safe_float(info.get("marketCap")) * 100
             if safe_float(info.get("freeCashflow")) is not None and safe_float(info.get("marketCap")) not in [None, 0]
@@ -53,7 +54,7 @@ def fetch_data(ticker):
         "Retention Rate": 120,  # Placeholder
         "Moat": True,  # Placeholder
         "Cashflow 5 Years": True,  # Placeholder
-        "Insider Buying": False  # Placeholder
+        "Insider Buying": False  # Placeholder       
     }
     return data
 
