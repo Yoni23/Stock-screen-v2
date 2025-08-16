@@ -16,17 +16,17 @@ def fetch_data(ticker):
     except Exception:
         return None
 
-    # Print out the raw debtToEquity value for debugging!
-    print(f"{ticker} - debtToEquity raw:", info.get("debtToEquity"))
+    # Show the raw debtToEquity value using Streamlit's UI
+    st.write(f"{ticker} - debtToEquity raw:", info.get("debtToEquity"))
 
-    # Optionally print all fetched key financials for further diagnosis
-    keys_to_print = [
+    # Optionally show all key financials for further diagnosis
+    keys_to_show = [
         "trailingPE", "priceToBook", "debtToEquity", "freeCashflow", "marketCap",
         "currentRatio", "priceToSalesTrailing12Months", "returnOnEquity",
         "earningsQuarterlyGrowth", "revenueGrowth", "earningsGrowth", "grossMargins"
     ]
-    for key in keys_to_print:
-        print(f"{ticker} - {key}: {info.get(key)}")
+    for key in keys_to_show:
+        st.write(f"{ticker} - {key}:", info.get(key))
 
     data = {
         "PE": safe_float(info.get("trailingPE")),
