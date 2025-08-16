@@ -3,6 +3,14 @@ import yfinance as yf
 import requests
 import os
 
+stock = yf.Ticker("NVDA")
+info = stock.info
+print("NVDA debtToEquity raw:", info.get("debtToEquity"))
+
+stock = yf.Ticker("GTT.PA")
+info = stock.info
+print("GTT.PA debtToEquity raw:", info.get("debtToEquity"))
+
 def safe_float(x):
     try:
         if x is None:
