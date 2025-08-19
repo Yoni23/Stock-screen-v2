@@ -34,7 +34,7 @@ def fetch_data(ticker):
     keys_to_show = [
         "trailingPE", "priceToBook", "debtToEquity", "freeCashflow", "marketCap",
         "currentRatio", "priceToSalesTrailing12Months", "returnOnEquity",
-        "earningsGrowth", "revenueGrowth", "earningsGrowth", "grossMargins"
+        "earningsGrowth", "revenueGrowth", "grossMargins"
     ]
     for key in keys_to_show:
         st.write(f"{ticker} - {key}:", info.get(key))
@@ -52,7 +52,6 @@ def fetch_data(ticker):
         "P/S": safe_float(info.get("priceToSalesTrailing12Months")),
         "ROE": safe_float(info.get("returnOnEquity")) * 100 if safe_float(info.get("returnOnEquity")) is not None else None,
         "ROIC": None,  # Placeholder
-        "Earning Growth": safe_float(info.get("earningsQuarterlyGrowth")) * 100 if safe_float(info.get("earningsQuarterlyGrowth")) is not None else None,
         "Revenue Growth YOY": safe_float(info.get("revenueGrowth")) * 100 if safe_float(info.get("revenueGrowth")) is not None else None,
         "EPS Growth YOY": safe_float(info.get("earningsGrowth")) * 100 if safe_float(info.get("earningsGrowth")) is not None else None,
         "Gross margin": safe_float(info.get("grossMargins")) * 100 if safe_float(info.get("grossMargins")) is not None else None,
