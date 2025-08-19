@@ -97,9 +97,6 @@ def evaluate(data):
         "ROIC": {
             "Value": lambda x: x is not None and x > 12
         },
-        "Earning Growth": {
-            "Value": lambda x: x is not None and 5 <= x <= 10
-        },
         "Revenue Growth YOY": {
             "Growth": lambda x: x is not None and x > 20,
             "Value": lambda x: x is not None and x > 7
