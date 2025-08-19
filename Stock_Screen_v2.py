@@ -34,7 +34,7 @@ def fetch_data(ticker):
     keys_to_show = [
         "trailingPE", "priceToBook", "debtToEquity", "freeCashflow", "marketCap",
         "currentRatio", "priceToSalesTrailing12Months", "returnOnEquity",
-        "earningsQuarterlyGrowth", "revenueGrowth", "earningsGrowth", "grossMargins"
+        "EPSGrowthYOY", "revenueGrowth", "earningsGrowth", "grossMargins"
     ]
     for key in keys_to_show:
         st.write(f"{ticker} - {key}:", info.get(key))
