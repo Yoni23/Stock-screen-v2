@@ -81,10 +81,12 @@ def evaluate(data):
             "Growth": lambda x: x is not None and x < 2.0
         },
         "Free Cashflow yield": {
-            "Deep Value": lambda x: x is not None and x > 8
+            "Deep Value": lambda x: x is not None and x > 8,
+            "Value": lambda x: x is not None and x > 5
         },
         "Current ratio": {
-            "Deep Value": lambda x: x is not None and x > 1.5
+            "Deep Value": lambda x: x is not None and x > 1.5,
+            "Value": lambda x: x is not None and x > 1.5
         },
         "P/S": {
             "Deep Value": lambda x: x is not None and x < 1
@@ -99,20 +101,23 @@ def evaluate(data):
             "Value": lambda x: x is not None and 5 <= x <= 10
         },
         "Revenue Growth YOY": {
-            "Growth": lambda x: x is not None and x > 20
+            "Growth": lambda x: x is not None and x > 20,
+            "Value": lambda x: x is not None and x > 7
         },
         "EPS Growth YOY": {
             "Growth": lambda x: x is not None and x > 20,
-            "Value": lambda x: x is not None and x > 5
+            "Value": lambda x: x is not None and x > 7
         },
         "Gross margin": {
-            "Growth": lambda x: x is not None and x > 60
+            "Growth": lambda x: x is not None and x > 60,
+            "Growth": lambda x: x is not None and x > 40
         },
         "Revenue Growth + Cash flow Margin": {
             "Growth": lambda x: x is not None and x > 40
         },
         "TAM": {
-            "Growth": lambda x: x is not None and x > 10_000_000_000
+            "Growth": lambda x: x is not None and x > 10_000_000_000,
+            "Value": lambda x: x is not None and x > 1_000_000_000
         },
         "Retention Rate": {
             "Growth": lambda x: x is not None and x > 110
