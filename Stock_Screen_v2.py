@@ -106,7 +106,7 @@ def evaluate(data):
         },
         "Gross margin": {
             "Growth": lambda x: x is not None and x > 60,
-            "Growth": lambda x: x is not None and x > 40
+            "Value": lambda x: x is not None and x > 40
         },
         "Revenue Growth + Cash flow Margin": {
             "Growth": lambda x: x is not None and x > 40
