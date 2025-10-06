@@ -105,11 +105,11 @@ def evaluate(data):
             "Value": lambda x: x is not None and x > 7
         },
         "Gross margin": {
-            "Growth": lambda x: x is not None and x > 60,
-            "Value": lambda x: x is not None and x > 40
+            "Growth": lambda x: x is not None and x > 0.60,
+            "Value": lambda x: x is not None and x > 0.40
         },
         "Revenue Growth + Cash flow Margin": {
-            "Growth": lambda x: x is not None and x > 40
+            "Growth": lambda x: x is not None and x > 0.40
         },
         "TAM": {
             "Growth": lambda x: x is not None and x > 10_000_000_000,
